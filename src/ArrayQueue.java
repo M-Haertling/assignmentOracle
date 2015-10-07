@@ -14,7 +14,7 @@ public class ArrayQueue {
 	
 	public ArrayQueue(int startSize){
 		queueArray = new String[startSize];
-		size = 0;
+		size = 0; //number of elements
 		front = 0;
 		back = -1;
 	}
@@ -23,14 +23,28 @@ public class ArrayQueue {
 	 * @return size
 	 */
 	public int getSize(){
+            
 		return size;
 	}
 	/**
 	 * @function adds a string to the end of the queue
-	 * @param toEnqueue: the input to be inserted
+	 * @param input: the input to be inserted
 	 */
-	public void enqueue(String toEnqueue){
+	public void enqueue(String input){
 		//TODO implement enqueue
+            
+            if(back < queueArray.length-2)
+            {
+                //System.out.println("PreTEST: adding"+input+" at position"+back+". Size = "+size
+                                //    +"\n Also, Length = "+ queueArray.length);
+                        
+                queueArray[++back] = input;
+                size++;
+                
+                System.out.println("INPUT TEST: adding \""+input+"\" to position"+back+". Size = "+size);
+            }
+            else System.out.println("Yikes, it won't fit!");
+            //for each elements elements, if isEmpty == true, then array[index]= toEnqueue
 	}
 	
 	/**
@@ -38,9 +52,14 @@ public class ArrayQueue {
 	 * @return the string from the front of the queue
 	 */
 	public String dequeue(){
-		//TODO implement dequeue
-		String toDequeue = "";
-		return toDequeue;
+		
+            if(front<back)
+            {   
+                size--;
+                System.out.println("OUTPUT TEST: dequeueing and returning  "+queueArray[front+1]+". Size = "+size);
+                return queueArray[front++];
+            }
+                return queueArray[front++]+"errorwtf";
 	}
 	
 	/**
@@ -49,6 +68,8 @@ public class ArrayQueue {
 	 */
 	public boolean isEmpty(){
 		//TODO implement isEmpty
+            
+            // for each (whole queue) is empty, return true (for testing end condition)
 		return true;
 	}
 
@@ -58,6 +79,8 @@ public class ArrayQueue {
 	 */
 	public boolean isFull(){
 		//TODO implement isFull
+            
+            //test if isFull, print the error. if invoking and this runs true, re-randomize your selection. 
 		return false;
 	}
 	
