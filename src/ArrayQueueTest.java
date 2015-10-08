@@ -5,11 +5,11 @@ public class ArrayQueueTest {
         ArrayQueue testCirc = new ArrayQueue(10);
         String[] test =
         {
-            "a", "b", "c", "d", "e"
+            "A", "B", "C", "D", "E"
         };
         for (String s : test)
         {
-            System.out.println("Queue Size:"+testCirc.getSize());
+            
             testCirc.enqueue(s);
         }
 
@@ -17,7 +17,9 @@ public class ArrayQueueTest {
         {
             try
             {
+                //System.out.print("\nDequeue(queue) pair \n-----------");
                 testCirc.enqueue(testCirc.dequeue());
+                //System.out.println("-----------\n I="+i);
             }
             catch (Exception e)
             {
@@ -26,7 +28,7 @@ public class ArrayQueueTest {
             }
         }
         
-        if (testCirc.dequeue() != "a")
+        if (testCirc.dequeue() != "A")
         {
             System.err.println("Incorrect dequeue order");
             return;
