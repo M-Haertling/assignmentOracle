@@ -5,7 +5,7 @@ public class ArrayQueue {
     private int size;
     private int front;
     private int back;
-    private String temp;
+    private String temp; //stores the last dequeued element
     
     
     public ArrayQueue() {

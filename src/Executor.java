@@ -1,41 +1,32 @@
 public class Executor {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) { // the main method ¯\_(ツ)_/¯.
 		Utility.init(); // initializes file readers
 		String[] questions = Utility.readQuestions(); //reads question.txt file into questions array
 		String[] answers = Utility.readAnswers(); // reads answers.txt file into answers array
 		
-		int numOracles = answers.length; //finds the number of oracles
-		
+		int numOracles = answers.length; //finds the number of oracles (dependent on number of answers)
         
-        
-		//TODO Assign questions to oracles using Utility.random and print the 
-        //question paired with the oracle response
-        
-		// 1. Initialize one ArrayQueue per oracle (arrays will work best).
-        ArrayQueue[] oracle = null; // = new ArrayQueue[numOracles];
+		// 1. Initialize one ArrayQueue per oracle
+        ArrayQueue[] oracle = new ArrayQueue[numOracles]; //creates an array with enough elements to fit each oracle
         for(int k = 0; k < numOracles; k++)
         {
             oracle[k] = new ArrayQueue(questions.length);
         }
         
         
-        // 2. Put the questions into the queues, assigning each one to the queue 
-        //of the oracle whose number is returned by the random number generator.
+        // 2. Distribute questions randomly to each oracle
         for (String question : questions)
         {
-            oracle[Utility.random(numOracles)].enqueue(question);
+            oracle[Utility.random(numOracles)].enqueue(question); //load each question with an enqueue() call
         }
         
-        
-		// 3. Loop through the oracles, having each one remove a question from 
-        //its queue (if empty do nothing) and answer it with its unique answer 
-        //(oracle[k] uses answers[k]). Do this repeatedly till all queues 
-        //become empty.
+        //3. do the data dance. Here we loop through all oracles, asking one question each.
+        // the process continues until there are no questions left to ask
         boolean allEmpty = false;
-        while(!allEmpty)
+        while(!allEmpty) // run until allEmpty==true
         {
-            allEmpty=true;
+            allEmpty=true; // "arm" the exit condition
             
             for (int z = 0; z < numOracles; z++)
             {
@@ -43,9 +34,13 @@ public class Executor {
                 {
                     continue;
                 }
-                System.out.println(oracle[z].dequeue());
-                System.out.println(answers[z] + "\n");
-                allEmpty = false;
+                System.out.println(oracle[z].dequeue()); //dequeue the question
+                System.out.println(answers[z] + "\n"); //print the oracle specific answer
+                
+                // if all oracles are empty, this statement will be unable "disarm" 
+                // the exit condition. Else, we toggle it back to false and continue
+                // to loop
+                allEmpty = false; 
             }
         }
         

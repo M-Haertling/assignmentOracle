@@ -72,4 +72,4 @@ public class Utility {
 	public static int random(int numOracles){
 		return rand.nextInt(numOracles);
 	}
-}
+}//jimmy cracked corn, but I don't care 
