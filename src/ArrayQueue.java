@@ -1,4 +1,8 @@
-
+/*
+ @author Greyson Paris
+ NetID: gsp150230
+ CS 2336 - M/W 5:30pm - 6:45pm
+ */
 public class ArrayQueue {
 
     private String[] queueArray;
